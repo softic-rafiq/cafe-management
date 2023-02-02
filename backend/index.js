@@ -1,8 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const connection = require("./config/dbConnection");
-// const createUser = require("./table/user");
-
+const morgan = require("morgan");
 // import routes
 const userRoutes = require("./routes/userRoutes");
 
@@ -21,6 +20,7 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(morgan("dev"));
 
 app.use("/users", userRoutes);
 
