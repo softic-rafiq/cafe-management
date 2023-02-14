@@ -2,7 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const connection = require("./config/dbConnection");
 const morgan = require("morgan");
+
 // import routes
+const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 const app = express();
@@ -22,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.use("/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 module.exports = app;
